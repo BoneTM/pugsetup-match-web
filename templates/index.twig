@@ -1,0 +1,50 @@
+{% extends "components/base.twig" %}
+
+{% block title %}满十记录 - {{ title }}{% endblock %}
+
+{% block body %}
+    <div class="ui container">
+        <div class="pt-16 pb-4">
+            <h2 class="ui header">
+                <i class="plug icon"></i>
+                <div class="content">
+                    满十记录
+                </div>
+            </h2>
+        </div>
+        <table class="ui padded small table striped">
+            <thead>
+            <tr>
+                <th class="single line">比赛ID</th>
+                <th>比赛时间</th>
+                <th>持续时间</th>
+                <th>地图</th>
+                <th>比分</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.match_id }}</td>
+                    <td>{{ item.time }}</td>
+                    <td>
+                        <div class="ui label {{ item.end_time ? '' : 'green' }}">{{ item.duration }}</div>
+                    </td>
+                    <td>{{ item.map }}</td>
+                    <td>{{ item.team1_score ~ ' : ' ~ item.team2_score }}</td>
+                    <td>
+                        <div class="ui icon buttons">
+                            <a href="?id={{ item.match_id }}" target="_blank">
+                                <button class="ui button" data-tooltip="查看详情"><i class="newspaper icon"></i></button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include 'components/footer.twig' %}
+{% endblock %}

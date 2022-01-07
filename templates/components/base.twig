@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <link rel="stylesheet" type="text/css" href="./semantic/semantic.min.css">
+    <script src="./semantic/semantic.min.js"></script>
+    <link href="./tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('./background.jpg');
+            background-size: cover;
+            background-attachment: fixed
+        }
+    </style>
+    {% block head %}
+        <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>

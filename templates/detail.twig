@@ -1,0 +1,50 @@
+{% extends "components/base.twig" %}
+
+{% block title %}满十记录 - {{ title }}{% endblock %}
+
+{% block body %}
+    <div class="ui container">
+        <div class="pt-16 pb-4">
+            <h2 class="ui header">
+                <i class="newspaper icon"></i>
+                <div class="content">
+                    满十详情
+                </div>
+            </h2>
+        </div>
+        {% for team in players %}
+            <table class="ui padded table striped">
+                <thead>
+                <tr>
+                    <th class="six wide">名称</th>
+                    <th class="center aligned">KAD</th>
+                    <th class="center aligned">爆头率</th>
+                    <th class="center aligned">首杀</th>
+                    <th class="center aligned">多杀</th>
+                    <th class="center aligned">残局</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in team %}
+                    <tr>
+                        <td><a href="https://steamcommunity.com/profiles/{{ item.steam64 }}" target="_blank"
+                               style="text-align: left">{{ item.name }}</a></td>
+                        <td class="center aligned">{{ item.kad }}</td>
+                        <td class="center aligned">{{ item.h }}</td>
+                        <td class="center aligned" data-tooltip="CT:{{ item.firstkill_ct }} T:{{ item.firstkill_t }}"
+                            data-inverted="">{{ item.f }}</td>
+                        <td class="center aligned"
+                            data-tooltip="2k:{{ item.k2 }} 3k:{{ item.k3 }} 4k:{{ item.k4 }} 5k:{{ item.k5 }}"
+                            data-inverted="">{{ item.k }}</td>
+                        <td class="center aligned"
+                            data-tooltip="1v1:{{ item.v1 }} 1v2:{{ item.v2 }} 1v3:{{ item.v3 }} 1v4:{{ item.v4 }} 1v5:{{ item.v5 }}"
+                            data-inverted="">{{ item.v }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+
+    {% include 'components/footer.twig' %}
+{% endblock %}
